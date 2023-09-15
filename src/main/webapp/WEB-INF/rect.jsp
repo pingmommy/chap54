@@ -9,59 +9,71 @@
 <script type="text/javascript">
 window.onload = function(){
 	
-	var arr = new Array(20).fill(new Array(40).fill(false));
+	var arr = new Array(20);
 	
+	for(var i =0; i< arr.length; i++){
+	    arr[i] = new Array(40);
+	};
 	
+	for(var i =0; i< arr.length; i++){
+	    for(var j = 0; j<arr[i].length; j++){
+	        arr[i][j]=false;
+	    }
+	}
 	
-	console.log(arr)
-	
-	
-			let cnt = no.innerText;
+	let cnt = no.innerText;
+	let forecnt = foreno.innerText;
+	let id = null;
 	
 	inter.onclick =function() {
 			
 			
-		let id = setInterval(function() {
+		 id = setInterval(function() {
 			let xhr = new XMLHttpRequest();
-			xhr.open('GET', '/alpha', false);
+			xhr.open('GET', '/alpha',false);
 			xhr.send();
+			foreno.innerText = forecnt;
 			no.innerText = cnt;
-		
-			if(cnt == 100){
+	
+			if(cnt == 200){
 			clearInterval(id);
 		    }
 			
 			let a = JSON.parse(xhr.responseText);
-			
+			console.log("a",a);
 			let td = surface.rows[a.line-1].cells[a.column-1];
 			td.style.color=a.fg;
 			td.style.background=a.bg;
 			td.innerText=a.ch;
+			forecnt++;
+			console.log("inside",arr[a.line-1][a.column-1]);
+			console.log(a.line-1);
+			console.log(a.column-1);
 			
 			
-			for(let i =0; i<20; i++){
-				for(let j =0; j<40; j++){
-					if(arr[a.line-1][a.column-1] != true){
-						arr[a.line-1][a.column-1]=true;
+					
+					if(arr[a.line-1][a.column-1] == false){
+						arr[a.line-1][a.column-1] = true;
 						cnt++;
+						console.log(cnt);
+						console.log(arr);
 					}
-				} 
-			}
-		}, 100);
+				 
 			
-			
-		
-		
+		}, 1000);			
+
 	}
 	
-}
+	clear.onclick= function() {clearInterval(id); }
+	
+	btn.onclick = sync;
 	
 	function sync(){
 		 btn.disabled = true;
 
 		let xhr = new XMLHttpRequest();
 		
-		xhr.open('GET', '/alpha', false);
+		xhr.open('GET', '/alpha',false);
 		
 		xhr.send();
 		let alpha = JSON.parse(xhr.responseText);
@@ -71,19 +83,19 @@ window.onload = function(){
 		td.style.background = alpha.bg;
 		td.innerText = alpha.ch;
  		 btn.disabled = false;
- 		for(let i =0; i<20; i++){
-			for(let j =0; j<40; j++){
-				if(arr[alpha.line-1][alpha.column-1]==false){
-					arr[alpha.line-1][alpha.column-1]=true;
-					cnt++;
-				}
-			} 
-		}
+ 		
+ 		 if(arr[alpha.line-1][alpha.column-1]==false){
+ 			arr[alpha.line-1][alpha.column-1]= true;
+ 			cnt++;
+ 		 }
+					console.log(cnt);
+					console.log(arr);
  		no.innerText = cnt;
  		console.log(alpha.line-1);
  		console.log(alpha.column-1);
 	}
 	
+}
 	
 	
 
@@ -95,8 +107,10 @@ window.onload = function(){
 <h1>AlphaGenerator</h1>
 <button id="btn">ajax</button>
 <button id="inter">INTERVAL</button>
+<button id="clear">clearINTERVAL</button>
 
 <span id="no">0</span>
+<span id="foreno">0</span>
 <table id="surface">
 <tbody>
  <c:forEach var="row" items="${surface}">

@@ -7,6 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>city</title>
+<style type="text/css">
+
+tbody > tr:nth-child(2n){
+	background: #eda56050;
+}
+
+</style>
+
+
+
 <script type="text/javascript">
 window.onload = function(){
 	population.oninput = function (e) {

@@ -41,7 +41,9 @@ public class AjaxController {
 	@GetMapping("/alpha")
 	@ResponseBody
 	Alpha generator() throws InterruptedException {
-		System.out.println("generator..");
+		
+		int n=0;
+		System.out.println("generator.."+ ++n);
 		
 		return new Alpha();
 	}

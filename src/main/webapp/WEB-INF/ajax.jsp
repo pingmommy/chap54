@@ -91,7 +91,7 @@ window.onload = function(){
 
 <span id="no">0</span>
 <table id="surface">
-<tbody>
+
  <c:forEach var="row" items="${surface}">
   <tr>
   	<c:forEach var="a" items="${row}">
@@ -99,7 +99,7 @@ window.onload = function(){
   	</c:forEach>
   </tr>
  </c:forEach>
-</tbody>
+
 </table>
 
 </body>
