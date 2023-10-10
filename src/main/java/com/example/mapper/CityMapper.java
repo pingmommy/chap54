@@ -24,7 +24,7 @@ public interface CityMapper {
 	List<Map<String, Object>> selectCountryCodes(); // key(String)이 컬럼명 value(Object)는 값.
 	
 	
-	@Select("select * from city where country_code =#{code, jdbcType=VARCHAR}")
+	@Select("select * from city where countryCode =#{code, jdbcType=VARCHAR}")
 	List<City> selectByCode(String code);
 
 	@SelectProvider(type = SqlProvider.class, method = "searchAll")
@@ -38,7 +38,7 @@ public interface CityMapper {
 			s.FROM("city");
 			
 			if(code !=null && !code.trim().equals("")) {
-				s.WHERE(String.format("country_code='%s'", code));
+				s.WHERE(String.format("countryCode='%s'", code));
 			}
 			if(population != null) {
 				

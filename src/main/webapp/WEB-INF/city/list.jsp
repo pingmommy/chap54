@@ -58,7 +58,7 @@ window.onload = function(){
 	<th>NO</th>
 	<th>id</th>
 	<th>name</th>
-	<th>country_code</th>
+	<th>countryCode</th>
 	<th>district</th>
 	<th>population</th>
 	<th>population</th>
@@ -72,7 +72,7 @@ window.onload = function(){
  		<td>${status.count}</td>
  	 	<td>${city.id}</td>
  	 	<td>${city.name}</td>
- 	 	<td>${city.country_code}</td>
+ 	 	<td>${city.countryCode}</td>
  	 	<td>${city.district}</td>
  	 	<td align="right">${city.population}</td>
  	 	<td align="right"><fmt:formatNumber pattern="###,###,###,####" value="${city.population}"/></td>

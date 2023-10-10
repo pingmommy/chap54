@@ -12,7 +12,7 @@ public class CityTest {
 		
 		System.out.println(city1);
 		
-		var city2 = City.builder().name("ping").country_code("6").build();
+		var city2 = City.builder().name("ping").countryCode("6").build();
 		System.out.println(city2);
 	}
 

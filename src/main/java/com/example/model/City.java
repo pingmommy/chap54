@@ -13,7 +13,7 @@ public class City {
 
 	Integer population;
 	String district;
-	String country_code;
+	String countryCode;
 	String name;
 	Integer id;
 }
