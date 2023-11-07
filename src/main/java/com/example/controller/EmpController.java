@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,7 +39,17 @@ public class EmpController {
 	request.setAttribute("depts", depts);
 		
 	}
- // view를 리턴하지 않으면(void) 스프링이 알아서 요청한 루트를 뷰로 리턴한다.  	
+ // view를 리턴하지 않으면(void) 스프링이 알아서 요청한 루트를 뷰로 리턴한다.  
+	
+	@GetMapping("/sal")
+	void selectGrade(Model model) {
+		var list = empmapper.selectGrade();
+		
+		model.addAttribute("list",list);
+		
+		var sal = empmapper.selectGradelist();
+		model.addAttribute("sal", sal);
+	}
 }
 
 

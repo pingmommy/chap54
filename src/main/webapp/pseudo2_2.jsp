@@ -26,6 +26,15 @@ input:checked ~ div{
 </style>
 <script type="text/javascript">
 
+window.onload = function () {
+	
+	let input = document.querySelector('input');
+	
+	for(input.checked){
+		console.log(Math.random());
+	}
+	
+}
 
 </script>
 </head>

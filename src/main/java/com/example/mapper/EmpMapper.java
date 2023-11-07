@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.jdbc.SQL;
 
 import com.example.model.Emp;
+import com.example.model.Salgrade;
 
 @Mapper
 public interface EmpMapper {
@@ -49,8 +50,19 @@ public interface EmpMapper {
 	     
 	     }
 	   }
+	
+	@Select("""
+			select empno, ename,deptno,job,sal, grade
+			from emp, salgrade
+			where sal between losal and hisal 
+			""")
+	List<Emp> selectGrade();
 
-	 }
+	@Select("select * from salgrade")
+	List<Salgrade> selectGradelist();
+}
+
+  
 
 
 
